@@ -1,0 +1,38 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: certificate_db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: certificate_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d certificate_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  app:
+    build: .
+    container_name: certificate_app
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: postgresql+psycopg://postgres:postgres@db:5432/certificate_db
+      SECRET_KEY: dev-insecure-secret-key-change-in-production
+      STORAGE_DIR: /app/storage
+      MAX_RECIPIENTS: 1000
+      BASE_URL: http://localhost:8000
+    volumes:
+      - certificate_storage:/app/storage
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  postgres_data:
+  certificate_storage:

@@ -1,0 +1,68 @@
+# Environment & Secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.cert
+*.crt
+
+# Python & Virtual Environments
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+.venv/
+venv/
+ENV/
+env/
+
+# Testing & Coverage
+.pytest_cache/
+*.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+
+# Storage & Generated Files
+storage/
+*.pdf
+*.zip
+*.tar.gz
+
+# Local Databases & Logs
+*.db
+*.sqlite
+*.sqlite3
+*.log
+
+# IDE & Operating System Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
